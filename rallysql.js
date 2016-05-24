@@ -70,12 +70,13 @@ function entireQuery() {
         'Milestones', 'Owner', 'LeafStoryPlanEstimateTotal', 'AcceptedLeafStoryPlanEstimateTotal', 
         'LeafStoryCount', 'UnEstimatedLeafStoryCount', 'AcceptedLeafStoryCount', 'Ready', 'Release'],
 
-	   	query: queryUtils.where('Project', '=', '/project/50982925414')
-	   	.or('Project', '=', '/project/50982926429')
-        .or('Project', '=', '/project/50983112863')
-        .or('Project', '=', '/project/49998887731')
-        .or('Project', '=', '/project/50982923609')
-        .or('Project', '=', '/project/55635571848')
+        query: queryUtils.where('Project', '=', '/project/50982925414') //info dev
+        .or('Project', '=', '/project/50982926429') //finance
+        .or('Project', '=', '/project/50983112863') //qwod
+        .or('Project', '=', '/project/49998887731') //prism
+        .or('Project', '=', '/project/55635571848') //db migration
+        .or('Project', '=', '/project/50982923609') //core
+        .or('Project', '=', '/project/56200604007') //prism dev
         .and('DirectChildrenCount', '<', '1'),    
 	    scope: {
 	    	workspace: '/workspace/48926045219',
@@ -120,8 +121,6 @@ function entireQuery() {
 	        	story.blockedReason = bigStories[i].BlockedReason;
 	        	story.storyPlanEstimate = bigStories[i].PlanEstimate;
 	        	story.storyReleasePriority = bigStories[i].c_ReleasePriority;
-	        	//story.parentName = bigStories[i].Parent.Name;
-	        	//story.iterationName = bigStories[i].Iteration.Name;	
 	        	if(bigStories[i].Release != null) {
 	        		story.releases = bigStories[i].Release.Name;
 	        	} else {
@@ -214,7 +213,6 @@ function entireQuery() {
 	        		
 	        	}
 
-	        	
 	        	connected.query('insert into bigreport set ?', story, function(err, result) {
 					if (err) {
 						console.log(err);
