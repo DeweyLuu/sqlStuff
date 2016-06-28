@@ -219,9 +219,9 @@ function entireQuery() {
 					}
 					
 				})
-				
+
+
 	        }
-	        //console.log(theResults);
 	        console.log('Successfully pushed up to database');
 		})
 	})
