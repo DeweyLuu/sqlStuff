@@ -68,7 +68,7 @@ function entireQuery() {
         'ScheduleState', 'c_KanbanState', 'Tasks', 'Blocked', 'BlockedReason', 'c_ReleasePriority', 
         'PlanEstimate', 'Projects', 'c_PreviousEstimate', 'State', 'c_StoryRank', 'c_EpicRank', 'c_TPO', 
         'Milestones', 'Owner', 'LeafStoryPlanEstimateTotal', 'AcceptedLeafStoryPlanEstimateTotal', 
-        'LeafStoryCount', 'UnEstimatedLeafStoryCount', 'AcceptedLeafStoryCount', 'Ready', 'Release'],
+        'LeafStoryCount', 'UnEstimatedLeafStoryCount', 'AcceptedLeafStoryCount', 'Ready', 'Release', 'c_Architect'],
 
         query: queryUtils.where('Project', '=', '/project/50982925414') //info dev
         .or('Project', '=', '/project/50982926429') //finance
@@ -121,6 +121,19 @@ function entireQuery() {
 	        	story.blockedReason = bigStories[i].BlockedReason;
 	        	story.storyPlanEstimate = bigStories[i].PlanEstimate;
 	        	story.storyReleasePriority = bigStories[i].c_ReleasePriority;
+	        	
+	        	if(bigStories[i].c_Architect != null) {
+	        		story.Architect = bigStories[i].c_Architect;
+	        	} else {
+	        		story.Architect = null;
+	        	}
+
+	        	if(bigStories[i].c_TPO != null) {
+	        		story.TPO = bigStories[i].c_TPO;
+	        	} else {
+	        		story.TPO = null;
+	        	}
+
 	        	if(bigStories[i].Release != null) {
 	        		story.releases = bigStories[i].Release.Name;
 	        	} else {
@@ -222,6 +235,7 @@ function entireQuery() {
 
 
 	        }
+	        console.log(story);
 	        console.log('Successfully pushed up to database');
 		})
 	})
