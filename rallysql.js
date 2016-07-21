@@ -235,10 +235,11 @@ function entireQuery() {
 
 
 	        }
-	        console.log(story);
+	        //console.log(story);
 	        console.log('Successfully pushed up to database');
 		})
 	})
+
 
 	.catch(function(err) {
 		console.error(err);
