@@ -52,6 +52,8 @@ var gotDate5 = gotDate.getMinutes();
     */
 var theTimeStamp = gotDate3 + gotDate1 + gotDate2 + "-" +  gotDate4;
 
+
+
 function entireQuery() {
 	query({
 		type: 'HierarchicalRequirement', //the type to query
@@ -98,6 +100,8 @@ function entireQuery() {
 			password: 'pGECfzQk5ARU',
 			database: 'rally_reports'
 		})
+
+		var count = 0;
 
 		connection.getConnection(function(err, connected) {
 			if(err) {
@@ -229,13 +233,16 @@ function entireQuery() {
 	        	connected.query('insert into bigreport set ?', story, function(err, result) {
 					if (err) {
 						console.log(err);
+					} else {
+						count += 1;		
 					}
-					
+				
 				})
 
 
 	        }
 	        //console.log(story);
+	        console.log(count);
 	        console.log('Successfully pushed up to database');
 		})
 	})
